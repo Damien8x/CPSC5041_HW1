@@ -1,8 +1,27 @@
+// Author: Damien Sudol
+// Filename: HW1.cpp
+// Date: 1/19/18
+// Package HW1
+// Version: 1.0
+
 #include <iostream>
 #include <fstream>
 #include <string>
-#include "Rectangle.cpp"
+#include "Rectangle.h"
 using namespace std;
+
+// Description: Driver designed to test full functionality of program set forth in the
+// guidelines of HW1. All public methods of Rectangle.h will be tested in to fulfill
+// the intedned functionality of the program. Program must store an array of 5 Rectangle 
+// objects. Each Rectangle must remain distinct and access all available public functions.
+// This class has been highly modularized into seven methods for functional decomposition.
+// All method descriptions are provided below.
+//
+// Assumptions: Testing of all possible state transitions and limits 
+// which have been thourougly tested will not appear in this driver. Driver WILL
+// accept user data and will NOT be hard coded to be recognized as a deployable ready to
+// use program. Program is intended to function as a container of a static number of
+// Rectangle objects, 5. 
 
 // method prototypes
 void printRectangle(Rectangle recArray[]);
@@ -24,12 +43,20 @@ int main(){
 string length = "";
 string width = "";
 string input = "";
-Rectangle recArray[5];
+Rectangle recArray[SIZE];
 
-cout << STARBREAK << endl << endl;
 
 // welcome message
-cout << "******************WELCOME TO RECTANGLE INFO******************" << endl << endl;
+cout << endl << endl <<
+ "************************************~~WELCOME TO RECTANGLE INFO~~*************************************"
+ << endl << endl << endl
+<< "Program is designed to store the length and width of five rectangles, after which the area and" 
+<< endl << "perimeter will be displayed for all rectangles, followed by the rectangle with the greatest"
+<< endl << "area, greatest perimeter, smallest area, smallest perimeter, all Rectangles with values matching"
+<< endl << "the greatest perimeter and greatest area. More details can be found in README.txt" << endl << endl <<
+ "Your entries will be saved to the file: lengthwidth.txt. " << endl << endl<< "Hope You Enjoy" << endl
+<< endl << endl << STARBREAK << endl << endl;
+    
 
 // create ofstream object 
 ofstream outfile;
@@ -39,19 +66,30 @@ outfile.open("lengthwidth.txt");
 
 // collect input from user for 5 Rectangle objects
 // add objects to recArray & print input to txt file
+// if non- integer values are entered for either width or length program
+// will continue to loop for given Rectangle until a proper value is given
 for (int i=0; i<SIZE; i++)
 {
+	string loopOn = "yes";
+	while(loopOn == "yes"){
+	try{
 	cout << "please enter the length of rectangle " <<  i+1  << " as an integer value followed by enter" << endl;
 	getline(cin, length);
 	cout << "please enter the width of rectangle " << i+1 <<  "  as an integer value followed by enter" << endl;
 	getline(cin, width);
-	input= length + ", " + width;
 	recArray[i] = Rectangle(stoi(length), stoi(width));
+	loopOn  = "no";
+	} catch(const std::exception& e){ cout <<" ENTER PROPER INTEGER VALUE" << endl;
+	loopOn = "yes";}
+	}
+	input= length + ", " + width;
 	outfile << input <<endl;
 }
 
 // close ofstream object
 outfile.close();
+
+cout << STARBREAK << endl << endl;
 
 // method calls for all available methods
 printRectangle(recArray);
@@ -61,8 +99,6 @@ printLargestPerimeter(recArray);
 printSmallestPerimeter(recArray);
 printEqualPerimeter(recArray);
 printEqualArea(recArray);
-
-cout << STARBREAK << endl;
 return 0;
 };
 

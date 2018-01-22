@@ -1,56 +1,52 @@
+// Author: Damien Sudol
+// Filename: Rectangle.cpp
+// Date: 1/19/18
+// Package: HW1
+// Version 1.0
+
 #include <iostream>
 #include <string>
-using namespace std;
+#include "Rectangle.h"
 
-class Rectangle{
-
-// private member variables
 int length;
 int width;
-public:
-// public Rectangle constructor. sets member variables to 0
-Rectangle(){
+
+Rectangle::Rectangle(){
 length = 0;
 width = 0;
 }
-// two argument, integer constructor. sets member variables to corresponding arguments
-Rectangle(int length, int width){
+
+Rectangle::Rectangle(int length, int width){
 this->length = length;
 this->width = width;
 }
 
-// method sets value of length member variable
-void setLength(int length){
+void Rectangle::setLength(int length){
 this->length = length;
 }
 
-// method sets value of width member variable
-void setWidth(int width){
+void Rectangle::setWidth(int width){
 this->width = width;
 }
 
-// method returns perimeter of Rectangle object
-int perimeter(){
+int Rectangle::perimeter() const{
 return length*2 + width*2;
 }
 
-// methodd returns area of Rectangle object
-int area(){
+int Rectangle::area() const{
 return length*width;
 }
 
-// method formats and prints length and width of Rectangle object
-void show(){
+void Rectangle::show() const{
 cout << "Length= " << length << ", Width= " << width;
 }
 
-// method returns true if passed objects area is equal to this Rectangles area
-int sameArea(Rectangle obj2){
+int Rectangle::sameArea(Rectangle obj2) const{
 	if (obj2.area() == this->area())
 		return 1;
 	else
 		return 0;
 }
 
-};
+
 
