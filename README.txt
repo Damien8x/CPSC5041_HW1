@@ -7,7 +7,8 @@ HOMEWORK 1 READ ME
 
 Intended Use Of Program:
 Program is intended to take in integer values corresponding to length and width for 5
-Rectanlges.  Program will then display length, width, area, and perimeter of all entered
+Rectanlges. All entries must be entered as a positive integers.
+Program will then display length, width, area, and perimeter of all entered
 Rectangles, Rectangle with the highest valued area *, Rectangle with the smallest valued 
 area *, Rectangle with the highest valued perimeter *, Rectangle with the lowest valued
 perimeter *, all Rectangles which share the maximum area, all Rectangles which share the
